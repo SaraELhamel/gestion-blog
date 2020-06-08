@@ -35,10 +35,10 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "UPDATE content SET username='Samantha' WHERE id=89";
+$sql = "UPDATE content SET content_name='poo' WHERE id=0";
 
 if ($conn->query($sql) === TRUE) {
-//   echo "Record updated successfully";
+   echo "Record updated successfully";
 } else {
   echo "Error updating record: " . $conn->error;
 }
@@ -49,7 +49,7 @@ $conn->close();
 
 <h1 >IT Blog</h1>
 <h3 >Welcome  to edit form</h3>
-<form method="post" action="cible.php">
+<form method="post" >
  <p>
     <label >id_user</label>
     <input type="number" name=id_user>
@@ -66,7 +66,7 @@ $conn->close();
     <label >Post</label>
     <input type="text">
  </p>
- <input type="submit" id="btn" value="edit"/>
+ <input type="button" id="btn" value="edit"/>
   
  </form>
 </body>

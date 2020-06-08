@@ -1,6 +1,30 @@
 <!DOCTYPE html>
+<?php include 'process.php';?>
 <html lang="en">
 <head>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "gestion blog";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+ $sql = "INSERT INTO content (id, username, content_name,content) VALUES ('5', 'haze', 'php','php ...')";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+ } else {
+   echo "Error updating record: " . $conn->error;
+ }
+
+ $conn->close();
+?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
@@ -23,51 +47,28 @@
 
 </head>
 <body>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gestion blog";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "INSERT INTO user (id, username, email,passw)
-VALUES ('12', '   abdo', 'abdo@email.com','12345678')";
-
-if ($conn->query($sql) === TRUE) {
-//   echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-$conn->close();
-?>
 <h1 >IT Blog</h1>
 <h3 >Welcome  to add form</h3>
-<form method="post" action="cible.php">
- 
- <p>
-    <label >id_user</label>
-    <input type="number" name=id_user>
+<form method="post">
+<p>
+    <label >id</label>
+    <input type="number" name=id>
  </p>
+
  <p>
     <label >username</label>
-    <input type="text">
+    <input type="text" name=username>
  </p>
  <p>
-    <label >Email</label>
-    <input type="email">
+    <label >content_name</label>
+    <input type="text" name=content_name>
  </p>
  <p>
-    <label >Post</label>
-    <input type="text">
+    <label >content</label>
+    <input type="text" name=content>
  </p>
- <input type="submit" id="btn" value="add"/>
+ 
+ <input type="submit" name="add" id="btn" value="add">
   
  </form>
  

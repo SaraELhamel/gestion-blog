@@ -1,17 +1,15 @@
 <?php
-$username = $_POST['user'];
-$password = $_POST['pass'];
-$username = stripcslashes($username);
-$password = stripcslashes($password);
-$username = mysql_real_escape_string($username);
-$password = mysql_real_escape_string($password);
-mysql_connect("localhost","root","");
-mysql_select_db("gestion blog");
-$result = mysql_query("select * from users where username='$username' and password='$password'") 
-or die("failed to query database".mysql_error());
-$row = mysql_fetch_array($result);
-if ($row['username']==$username && $row['password']==$password) {
-    echo "login success welcome".$row['username'];
-} else {
-    echo "failed to login";
-} 
+$username="";
+$content_name="";
+$content="";
+$id="0";
+$db=mysqli_connect('localhost','root','','gestion blog');
+if (isset($_POST['add'])){
+    $username=$_POST['username'];
+    $content_name=$_POST['content_name'];
+    $content=$_POST['content'];
+    $id=$_POST['id'];
+    $query= "INSERT INTO content (id,username,content_name,content) VALUES ('$id,'$username','$content_name','$content)";
+    mysqli_query($db,$query);
+    header('location:add.php');
+}
